@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        body {
+  cursor: none; /* hide default cursor */
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #fff; /* change color and size to your liking */
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.5;
+  transform: scale(0);
+  animation: ring-expand 1s linear infinite;
+}
+
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: #ff3c00; /* change color to your liking */
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.5;
+  transform: translate(-50%, -50%) scale(0);
+  animation: cursor-expand 1s linear infinite;
+}
+
+@keyframes ring-expand {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+    </style>
+    <meta charset="utf-8">
+    <title>Custom Cursor</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="cursor-ring"></div>
+<div class="cursor"></div>
+
+
+    <script>
+
+        document.addEventListener("mousemove", function(event) {
+  const x = event.clientX;
+  const y = event.clientY;
+
+  const cursor = document.querySelector(".cursor");
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
+});
+
+    </script>
+  </body>
+</html>
