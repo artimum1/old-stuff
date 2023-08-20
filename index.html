@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #0A0A0A;
+}
+
+canvas {
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  max-width: 100vw;
+	max-height: 100vh;
+	position: absolute;
+
+  transform: translate(-50%,-50%);
+}
+  </style>
+</head>
+<body>
+  <script>
+
+let vectors = [];
+let amount = 8000;
+let speed = 1;
+let size = 10;
+
+function setup() {
+  createCanvas(windowWidth,windowHeight)
+  background(10)
+  
+  stroke(200,200,200, 10)
+  
+  for ( var i = 0; i < amount; i++ ) {
+    vectors.push(createVector(random(width),random(height)))
+  }
+}
+
+function draw() {
+  for ( vector of vectors) {
+    let randomisation = noise(vector.x/99, vector.y/99) * TAU;
+    
+    vector.add(cos(randomisation),sin(randomisation))
+    
+    point(
+      constrain(vector.x, 100, width-100),
+      constrain(vector.y, 100, height-100)
+    )
+  }
+}
+  </script>
+</body>
+</html>
